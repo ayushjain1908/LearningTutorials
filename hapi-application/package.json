@@ -1,0 +1,22 @@
+{
+  "name": "hapi-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ayush Jain",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^3.2.1",
+    "good": "^6.6.3",
+    "good-file": "^6.0.1",
+    "handlebars": "^4.0.5",
+    "hapi": "^13.4.1",
+    "inert": "^4.0.0",
+    "joi": "^8.4.1",
+    "uuid": "^2.0.2",
+    "vision": "^4.1.0"
+  }
+}
