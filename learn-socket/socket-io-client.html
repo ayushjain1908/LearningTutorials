@@ -1,0 +1,9 @@
+<script src = "node_modules/socket.io-client/socket.io.js">
+</script>
+<script>
+var socket = io('http://localhost:8000');
+socket.on('alert',function(data){
+  console.log(data);
+});
+socket.emit('click','ping from client \\m//' + Math.random());
+</script>
