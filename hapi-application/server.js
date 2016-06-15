@@ -3,7 +3,9 @@ var server = new Hapi.Server();
 var Inert = require('inert');
 var Vision = require('vision');
 var CardStore = require('./lib/cardStore');
+var UserStore = require('./lib/userStore');
 CardStore.initialize();
+UserStore.initialize();
 server.connection({
   port : 3000
 });
@@ -21,7 +23,7 @@ server.views({
     html : require('handlebars')
   },
   path : './templates'
-})
+});
 
 // server.register({
 //   register : require('good'),
@@ -60,6 +62,17 @@ server.views({
 // },function(err){
 //   console.log(err);
 // });
+server.register(require('hapi-auth-cookie'),function(err){
+  if(err){
+    console.log(err);
+  }
+  server.auth.strategy('default','cookie',{
+    password : 'myPassword',
+    redirectTo : '/login',
+    isSecure : false
+  });
+  server.auth.default('default');
+})
 server.ext('onRequest', function(request,reply){
   console.log('Request Recieved : ' + request.path);
   reply.continue();
@@ -73,7 +86,6 @@ server.ext('onPreResponse',function(request,reply){
 })
 
 server.route(require('./lib/routes'));
-
 server.start(function(){
   console.log('Hapi Server running at ' + server.info.uri);
 });

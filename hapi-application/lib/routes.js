@@ -6,6 +6,9 @@ var Routes = [
     method : 'GET',
     handler : {
       file : 'templates/index.html'
+    },
+    config : {
+      auth : false
     }
   },
   {
@@ -21,6 +24,9 @@ var Routes = [
         path : './public',
         listing : false
       }
+    },
+    config : {
+      auth : false
     }
   },
   {
@@ -32,6 +38,16 @@ var Routes = [
     path : '/cards/{id}',
     method : 'DELETE',
     handler : Handlers.deleteCardHandler
+  },
+  {
+    path : '/login',
+    method : 'GET' ,
+    handler : {
+      file : 'templates/login.html'
+    },
+    config : {
+      auth : false
+    }
   }
 ];
 module.exports = Routes;
